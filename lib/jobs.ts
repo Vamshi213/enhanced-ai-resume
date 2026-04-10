@@ -1,0 +1,380 @@
+import { Job } from './types';
+
+export const jobs: Job[] = [
+  {
+    id: 'stripe-sfe-001',
+    title: 'Senior Frontend Engineer',
+    company: 'Stripe',
+    companyInitials: 'S',
+    companyColor: 'bg-indigo-600',
+    location: 'San Francisco, CA',
+    type: 'Hybrid',
+    salary: '$180k – $230k',
+    postedAt: '2026-04-08T10:00:00Z',
+    description: `We are looking for a Senior Frontend Engineer to join Stripe's Dashboard team. You will own the interface used by millions of businesses worldwide to manage their payments, subscriptions, and financial operations.
+
+You will collaborate with product designers and backend engineers to build fast, accessible, and maintainable UI systems. You are comfortable working across the full frontend stack: component design, state management, performance profiling, and contributing to shared design systems.
+
+Our frontend stack is built on React, TypeScript, and GraphQL. We place a high value on correctness, performance, and accessibility — our dashboards must work reliably for business owners and developers across every region and device.`,
+    requirements: [
+      '5+ years of frontend engineering experience in production environments',
+      'Expert-level React and TypeScript, including hooks, context, and advanced patterns',
+      'Experience with GraphQL (queries, mutations, subscriptions) in a React application',
+      'Strong understanding of web performance: bundle size, lazy loading, render optimization',
+      'Commitment to accessibility (WCAG 2.1 AA) including screen reader and keyboard support',
+      'Experience building and maintaining component libraries or design systems',
+      'Ability to debug complex cross-browser and cross-device rendering issues',
+    ],
+    niceToHave: [
+      'Experience with Next.js and server-side rendering',
+      'Contributions to open source frontend projects',
+      'Background in financial products or payment UI',
+      'Experience with Storybook and visual regression testing',
+    ],
+    techStack: ['React', 'TypeScript', 'GraphQL', 'Next.js', 'CSS-in-JS', 'Jest', 'Storybook'],
+    applicants: [
+      {
+        id: 'a1',
+        name: 'Sarah Chen',
+        initials: 'SC',
+        score: 91,
+        appliedAt: '2026-04-09T08:22:00Z',
+        status: 'interviewing',
+        headline: '6 yrs React/TypeScript at Meta — shipped design system used by 200+ engineers',
+      },
+      {
+        id: 'a2',
+        name: 'Marcus Rodriguez',
+        initials: 'MR',
+        score: 78,
+        appliedAt: '2026-04-09T11:05:00Z',
+        status: 'screening',
+        headline: '5 yrs frontend at Figma — built collaborative canvas rendering engine',
+      },
+      {
+        id: 'a3',
+        name: 'Priya Patel',
+        initials: 'PP',
+        score: 85,
+        appliedAt: '2026-04-08T16:44:00Z',
+        status: 'interviewing',
+        headline: '4 yrs Next.js at Vercel — owned Core Web Vitals dashboard, reduced LCP by 40%',
+      },
+      {
+        id: 'a4',
+        name: 'James Kim',
+        initials: 'JK',
+        score: 62,
+        appliedAt: '2026-04-08T14:15:00Z',
+        status: 'screening',
+        headline: '3 yrs React at Series B startup — built customer-facing analytics UI',
+      },
+      {
+        id: 'a5',
+        name: 'Emma Thompson',
+        initials: 'ET',
+        score: 95,
+        appliedAt: '2026-04-08T09:00:00Z',
+        status: 'offered',
+        headline: '8 yrs frontend, ex-Google — led accessibility overhaul across Google Maps mobile web',
+      },
+    ],
+  },
+  {
+    id: 'airbnb-be-002',
+    title: 'Backend Engineer',
+    company: 'Airbnb',
+    companyInitials: 'A',
+    companyColor: 'bg-rose-500',
+    location: 'New York, NY',
+    type: 'Hybrid',
+    salary: '$160k – $210k',
+    postedAt: '2026-04-06T14:00:00Z',
+    description: `Airbnb's Search & Discovery team is hiring a Backend Engineer to build the systems that help guests find and book the perfect place to stay. You'll work on high-throughput services that handle tens of thousands of requests per second during peak booking seasons.
+
+You will design and maintain microservices written in Python and Go, integrate with a Kafka-based event pipeline, and optimize PostgreSQL and Redis data layers for sub-50ms response times at global scale.
+
+We value engineers who take ownership end-to-end — from database schema to deployment — and who communicate clearly with cross-functional partners including data science and product.`,
+    requirements: [
+      '3+ years of backend engineering experience in a production environment',
+      'Proficiency in Python or Go (we use both; familiarity with one and willingness to learn the other)',
+      'Experience designing and operating distributed microservice architectures',
+      'Strong SQL skills and experience with PostgreSQL at scale (sharding, indexing, query optimization)',
+      'Experience with caching strategies using Redis or Memcached',
+      'Solid understanding of asynchronous messaging (Kafka, RabbitMQ, or similar)',
+      'Experience with containerization (Docker) and orchestration (Kubernetes)',
+    ],
+    niceToHave: [
+      'Experience building search or recommendations infrastructure',
+      'Familiarity with gRPC and Protocol Buffers',
+      'Experience with Elasticsearch or Solr for full-text search',
+      'On-call experience and incident management',
+    ],
+    techStack: ['Python', 'Go', 'Kubernetes', 'PostgreSQL', 'Redis', 'Kafka', 'gRPC', 'Docker'],
+    applicants: [
+      {
+        id: 'b1',
+        name: 'Alex Liu',
+        initials: 'AL',
+        score: 88,
+        appliedAt: '2026-04-07T09:15:00Z',
+        status: 'interviewing',
+        headline: '4 yrs Go/Python at Uber — built fare estimation service serving 50k RPS',
+      },
+      {
+        id: 'b2',
+        name: 'Sofia Martínez',
+        initials: 'SM',
+        score: 74,
+        appliedAt: '2026-04-07T13:40:00Z',
+        status: 'screening',
+        headline: '5 yrs Python backend at Lyft — owned driver matching microservice',
+      },
+      {
+        id: 'b3',
+        name: 'David Park',
+        initials: 'DP',
+        score: 55,
+        appliedAt: '2026-04-06T17:00:00Z',
+        status: 'rejected',
+        headline: '2 yrs Python at early-stage startup — built CRUD APIs for SaaS product',
+      },
+    ],
+  },
+  {
+    id: 'linear-fse-003',
+    title: 'Full Stack Engineer',
+    company: 'Linear',
+    companyInitials: 'L',
+    companyColor: 'bg-violet-600',
+    location: 'Remote',
+    type: 'Remote',
+    salary: '$150k – $200k',
+    postedAt: '2026-04-03T09:00:00Z',
+    description: `Linear is building the new standard for software project management. We're a small, high-output team and we move fast. As a Full Stack Engineer you'll work on both the React frontend and the Node.js backend, often owning features end-to-end in a single sprint.
+
+You care deeply about product quality. You notice when something is 10ms slower than it should be, and you fix it. You write clean TypeScript, design clean schemas, and take pride in features that feel polished the moment they ship.
+
+We use WebSockets for real-time sync across teams and Electron for our desktop app. Experience with either is a significant plus.`,
+    requirements: [
+      '4+ years of full stack experience with React and Node.js in production',
+      'Strong TypeScript across the entire stack (frontend and backend)',
+      'PostgreSQL experience including schema design, migrations, and query optimization',
+      'Experience building real-time features (WebSockets, Server-Sent Events, or CRDTs)',
+      'Product instincts — you care about what you ship, not just whether it works',
+      'Ability to work autonomously and drive features from design to deployment',
+    ],
+    niceToHave: [
+      'Electron or native desktop app development experience',
+      'Experience with collaborative editing (Yjs, Automerge, or OT algorithms)',
+      'Prior startup experience (Series A or earlier)',
+      'Contributions to open source developer tools',
+    ],
+    techStack: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'WebSockets', 'Electron', 'GraphQL'],
+    applicants: [
+      {
+        id: 'c1',
+        name: 'Rahul Gupta',
+        initials: 'RG',
+        score: 90,
+        appliedAt: '2026-04-04T08:00:00Z',
+        status: 'interviewing',
+        headline: '5 yrs TypeScript/React at Notion — owned block editor real-time sync engine',
+      },
+      {
+        id: 'c2',
+        name: 'Mia Johnson',
+        initials: 'MJ',
+        score: 72,
+        appliedAt: '2026-04-04T12:30:00Z',
+        status: 'screening',
+        headline: '4 yrs fullstack at B2B SaaS startup — shipped React + Node.js features solo',
+      },
+      {
+        id: 'c3',
+        name: 'Tyler Adams',
+        initials: 'TA',
+        score: 68,
+        appliedAt: '2026-04-03T14:10:00Z',
+        status: 'screening',
+        headline: '3 yrs React + Node.js at agency — delivered 12 client projects',
+      },
+    ],
+  },
+  {
+    id: 'anthropic-mle-004',
+    title: 'ML Engineer',
+    company: 'Anthropic',
+    companyInitials: 'An',
+    companyColor: 'bg-orange-500',
+    location: 'San Francisco, CA',
+    type: 'On-site',
+    salary: '$200k – $280k',
+    postedAt: '2026-03-27T10:00:00Z',
+    description: `Anthropic is an AI safety company working to build reliable, interpretable, and steerable AI systems. Our ML Engineering team bridges research and production — you'll train large language models, build evaluation pipelines, optimize GPU utilization, and ship infrastructure that our research teams depend on daily.
+
+You will work closely with researchers on scaling experiments, implement training recipes, and maintain distributed training infrastructure across thousands of GPUs. You should be comfortable with both the theory and the systems-level implementation of modern transformer architectures.`,
+    requirements: [
+      '3+ years of ML engineering experience in a research or production environment',
+      'Expert-level Python and PyTorch including custom CUDA kernels and autograd',
+      'Experience training large-scale models (billions of parameters) on distributed hardware',
+      'Solid understanding of transformer architectures, attention mechanisms, and training dynamics',
+      'Experience with ML infrastructure: experiment tracking, evaluation harnesses, model registries',
+      'Strong debugging skills across the hardware-software stack (NCCL, CUDA, PyTorch internals)',
+    ],
+    niceToHave: [
+      'Experience with JAX and XLA compilation',
+      'Reinforcement learning from human feedback (RLHF) or preference optimization',
+      'Prior work on LLM fine-tuning, adaptation, or alignment techniques',
+      'Publications at NeurIPS, ICML, ICLR, or similar venues',
+    ],
+    techStack: ['Python', 'PyTorch', 'CUDA', 'JAX', 'HuggingFace', 'Triton', 'NCCL', 'Kubernetes'],
+    applicants: [
+      {
+        id: 'd1',
+        name: 'Wei Zhang',
+        initials: 'WZ',
+        score: 93,
+        appliedAt: '2026-03-28T09:00:00Z',
+        status: 'interviewing',
+        headline: '4 yrs ML at DeepMind — co-authored 2 NeurIPS papers on training efficiency',
+      },
+      {
+        id: 'd2',
+        name: 'Natasha Ivanova',
+        initials: 'NI',
+        score: 87,
+        appliedAt: '2026-03-28T11:15:00Z',
+        status: 'offered',
+        headline: 'PhD ML Stanford, 2 yrs at OpenAI — worked on GPT-4 RLHF pipeline',
+      },
+      {
+        id: 'd3',
+        name: 'Carlos Reyes',
+        initials: 'CR',
+        score: 71,
+        appliedAt: '2026-03-27T16:00:00Z',
+        status: 'screening',
+        headline: '3 yrs ML engineer at AI startup — fine-tuned and deployed 7B parameter models',
+      },
+    ],
+  },
+  {
+    id: 'shopify-staff-005',
+    title: 'Staff Engineer',
+    company: 'Shopify',
+    companyInitials: 'Sh',
+    companyColor: 'bg-green-600',
+    location: 'Remote',
+    type: 'Remote',
+    salary: '$220k – $290k',
+    postedAt: '2026-03-20T09:00:00Z',
+    description: `Shopify's Checkout team is looking for a Staff Engineer to lead the technical strategy for one of the highest-traffic, highest-stakes flows on the internet. Millions of buyers complete purchases through Shopify Checkout every day.
+
+As a Staff Engineer you will set technical direction, mentor a team of 8 engineers, drive cross-team alignment, and own architectural decisions that affect the reliability and performance of checkout at global scale. You will be hands-on — this is not a pure leadership role — while also elevating the team around you.`,
+    requirements: [
+      '8+ years of software engineering with at least 2 years in a staff-level or tech lead role',
+      'Proven track record delivering complex, high-scale technical projects end-to-end',
+      'Strong system design skills: distributed systems, data modeling, API design',
+      'Experience mentoring senior engineers and driving technical growth across a team',
+      'Excellent written and verbal communication for technical proposals and cross-team alignment',
+      'Ability to navigate and simplify ambiguous, multi-quarter technical problems',
+    ],
+    niceToHave: [
+      'Ruby on Rails experience (Shopify core is Ruby)',
+      'E-commerce domain knowledge',
+      'Experience with multi-region, globally distributed infrastructure',
+      'Background in payments or financial transaction systems',
+    ],
+    techStack: ['Ruby', 'Go', 'React', 'MySQL', 'Kubernetes', 'GraphQL', 'Redis', 'Kafka'],
+    applicants: [
+      {
+        id: 'e1',
+        name: 'Jennifer Wu',
+        initials: 'JW',
+        score: 88,
+        appliedAt: '2026-03-21T09:00:00Z',
+        status: 'interviewing',
+        headline: '10 yrs engineer, tech lead at Square — led 12-person team shipping card-present payments',
+      },
+      {
+        id: 'e2',
+        name: 'Robert Singh',
+        initials: 'RS',
+        score: 82,
+        appliedAt: '2026-03-22T10:30:00Z',
+        status: 'screening',
+        headline: '9 yrs backend, 3 yrs Ruby on Rails at Zendesk — drove Rails 6 migration for 4M LOC codebase',
+      },
+    ],
+  },
+  {
+    id: 'netflix-sre-006',
+    title: 'Site Reliability Engineer',
+    company: 'Netflix',
+    companyInitials: 'N',
+    companyColor: 'bg-red-600',
+    location: 'Los Gatos, CA',
+    type: 'Hybrid',
+    salary: '$170k – $230k',
+    postedAt: '2026-03-10T09:00:00Z',
+    description: `Netflix delivers over 250 million hours of video per day to subscribers across 190 countries. The SRE team is responsible for the reliability, observability, and operational excellence of the services that make this possible.
+
+As an SRE at Netflix you will build automation to eliminate operational toil, design observability systems that surface problems before customers notice, participate in on-call rotations, and run blameless post-mortems that drive permanent improvements. You will work closely with development teams to embed reliability thinking into how systems are built — not just how they're run.`,
+    requirements: [
+      '5+ years of SRE, DevOps, or production engineering experience',
+      'Strong programming skills in Go or Python (we write real software, not just scripts)',
+      'Expert-level Kubernetes: cluster operations, resource management, custom operators',
+      'Cloud infrastructure at scale (AWS primary; GCP experience valued)',
+      'Experience building observability pipelines: metrics (Prometheus), logs, distributed tracing',
+      'On-call experience with structured incident management and post-mortem culture',
+      'Infrastructure-as-code experience (Terraform, Pulumi, or equivalent)',
+    ],
+    niceToHave: [
+      'Experience with chaos engineering (Chaos Monkey, Gremlin, or custom tooling)',
+      'Spinnaker or other continuous delivery pipeline experience',
+      'Background in streaming media or CDN infrastructure',
+      'Custom Kubernetes operator development (Go)',
+    ],
+    techStack: ['Go', 'Python', 'AWS', 'Kubernetes', 'Prometheus', 'Grafana', 'Terraform', 'Spinnaker'],
+    applicants: [
+      {
+        id: 'f1',
+        name: 'Amanda Foster',
+        initials: 'AF',
+        score: 85,
+        appliedAt: '2026-03-11T08:00:00Z',
+        status: 'interviewing',
+        headline: '6 yrs SRE at AWS — reduced P99 latency 35% across 8 core services via custom Kubernetes operators',
+      },
+      {
+        id: 'f2',
+        name: "Kevin O'Brien",
+        initials: 'KO',
+        score: 79,
+        appliedAt: '2026-03-12T10:00:00Z',
+        status: 'screening',
+        headline: '5 yrs DevOps at Spotify — built Prometheus-based alerting system covering 400+ microservices',
+      },
+      {
+        id: 'f3',
+        name: 'Lisa Chang',
+        initials: 'LC',
+        score: 91,
+        appliedAt: '2026-03-10T14:30:00Z',
+        status: 'offered',
+        headline: '7 yrs SRE at Google — on-call lead for YouTube infrastructure, drove MTTR from 45m to 8m',
+      },
+    ],
+  },
+];
+
+export function getJob(id: string): Job | undefined {
+  return jobs.find((j) => j.id === id);
+}
+
+export function getJobsSortedByDate(): Job[] {
+  return [...jobs].sort(
+    (a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime()
+  );
+}
