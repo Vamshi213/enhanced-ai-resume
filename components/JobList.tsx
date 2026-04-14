@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Job } from '@/lib/types';
+import { useState, useMemo, useEffect } from 'react';
+import { Job, UserProfile } from '@/lib/types';
+import { loadProfile } from '@/lib/profile';
+import { scoreJobForProfile } from '@/lib/scoring';
 import { JobCard } from './JobCard';
 
 interface JobListProps {
@@ -9,14 +11,30 @@ interface JobListProps {
 }
 
 const WORK_TYPES = ['All', 'Remote', 'Hybrid', 'On-site'] as const;
+type Tab = 'recommended' | 'all';
 
 export function JobList({ jobs }: JobListProps) {
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [tab, setTab] = useState<Tab>('recommended');
   const [query, setQuery] = useState('');
   const [workType, setWorkType] = useState<(typeof WORK_TYPES)[number]>('All');
 
+  useEffect(() => {
+    const p = loadProfile();
+    setProfile(p);
+    if (!p) setTab('all');
+  }, []);
+
+  const scoredJobs = useMemo(() => {
+    return jobs.map((job) => ({
+      job,
+      score: profile ? scoreJobForProfile(job, profile) : undefined,
+    }));
+  }, [jobs, profile]);
+
   const filtered = useMemo(() => {
     const q = query.toLowerCase();
-    return jobs.filter((job) => {
+    let list = scoredJobs.filter(({ job }) => {
       const matchesType = workType === 'All' || job.type === workType;
       const matchesQuery =
         !q ||
@@ -26,15 +44,41 @@ export function JobList({ jobs }: JobListProps) {
         job.location.toLowerCase().includes(q);
       return matchesType && matchesQuery;
     });
-  }, [jobs, query, workType]);
+
+    if (tab === 'recommended' && profile) {
+      list = [...list].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+    }
+
+    return list;
+  }, [scoredJobs, query, workType, tab, profile]);
 
   return (
     <div>
+      {/* Tabs (only when profile exists) */}
+      {profile && (
+        <div className="flex gap-1 mb-6 glass-bright rounded-xl p-1 w-fit">
+          {(['recommended', 'all'] as Tab[]).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                tab === t
+                  ? 'text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+              style={tab === t ? { background: 'linear-gradient(135deg,#7c3aed,#4f46e5)' } : {}}
+            >
+              {t === 'recommended' ? '✦ For You' : 'All Jobs'}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-8">
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1">
           <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500"
             fill="none" viewBox="0 0 24 24" stroke="currentColor"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -42,22 +86,23 @@ export function JobList({ jobs }: JobListProps) {
           </svg>
           <input
             type="text"
-            placeholder="Search by role, company, or technology…"
+            placeholder="Search role, company, or technology…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white"
+            className="input-dark pl-9"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           {WORK_TYPES.map((t) => (
             <button
               key={t}
               onClick={() => setWorkType(t)}
-              className={`px-4 py-2.5 rounded-xl text-sm font-medium border transition-colors ${
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                 workType === t
-                  ? 'bg-indigo-600 text-white border-indigo-600'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
+                  ? 'text-white'
+                  : 'btn-ghost'
               }`}
+              style={workType === t ? { background: 'linear-gradient(135deg,#7c3aed,#4f46e5)' } : {}}
             >
               {t}
             </button>
@@ -65,18 +110,18 @@ export function JobList({ jobs }: JobListProps) {
         </div>
       </div>
 
-      {/* Results count */}
-      <p className="text-sm text-gray-500 mb-6">
+      {/* Count */}
+      <p className="text-xs text-slate-500 mb-5">
         {filtered.length === 0
-          ? 'No jobs match your search.'
-          : `${filtered.length} job${filtered.length !== 1 ? 's' : ''} found`}
+          ? 'No jobs match.'
+          : `${filtered.length} job${filtered.length !== 1 ? 's' : ''}${tab === 'recommended' && profile ? ' — sorted by your match score' : ''}`}
       </p>
 
       {/* Grid */}
       {filtered.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((job) => (
-            <JobCard key={job.id} job={job} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filtered.map(({ job, score }) => (
+            <JobCard key={job.id} job={job} matchScore={score} />
           ))}
         </div>
       )}

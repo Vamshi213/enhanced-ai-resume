@@ -9,31 +9,25 @@ interface ScoreGaugeProps {
 }
 
 function scoreColor(score: number): string {
-  if (score >= 80) return '#10B981'; // green
-  if (score >= 60) return '#3B82F6'; // blue
-  if (score >= 40) return '#F59E0B'; // amber
-  return '#EF4444'; // red
+  if (score >= 80) return '#34d399';
+  if (score >= 60) return '#818cf8';
+  if (score >= 40) return '#fbbf24';
+  return '#f87171';
 }
 
-function likelihoodBg(likelihood: RecruiterLikelihood): string {
-  const map: Record<RecruiterLikelihood, string> = {
-    'Very High': 'bg-green-100 text-green-800 border-green-200',
-    High: 'bg-blue-100 text-blue-800 border-blue-200',
-    Medium: 'bg-amber-100 text-amber-800 border-amber-200',
-    Low: 'bg-red-100 text-red-800 border-red-200',
-  };
-  return map[likelihood];
-}
+const LIKELIHOOD_STYLES: Record<RecruiterLikelihood, string> = {
+  'Very High': 'bg-emerald-400/10 text-emerald-300 border-emerald-400/25',
+  High: 'bg-indigo-400/10 text-indigo-300 border-indigo-400/25',
+  Medium: 'bg-amber-400/10 text-amber-300 border-amber-400/25',
+  Low: 'bg-red-400/10 text-red-300 border-red-400/25',
+};
 
-function likelihoodIcon(likelihood: RecruiterLikelihood): string {
-  const map: Record<RecruiterLikelihood, string> = {
-    'Very High': '🎯',
-    High: '📈',
-    Medium: '⚡',
-    Low: '🔧',
-  };
-  return map[likelihood];
-}
+const LIKELIHOOD_ICON: Record<RecruiterLikelihood, string> = {
+  'Very High': '🎯',
+  High: '📈',
+  Medium: '⚡',
+  Low: '🔧',
+};
 
 export function ScoreGauge({ score, recruiterLikelihood }: ScoreGaugeProps) {
   const [animated, setAnimated] = useState(0);
@@ -43,17 +37,19 @@ export function ScoreGauge({ score, recruiterLikelihood }: ScoreGaugeProps) {
   const color = scoreColor(score);
 
   useEffect(() => {
-    const t = setTimeout(() => setAnimated(score), 100);
+    const t = setTimeout(() => setAnimated(score), 120);
     return () => clearTimeout(t);
   }, [score]);
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-5">
       <div className="relative inline-flex items-center justify-center">
         <svg width="200" height="200" viewBox="0 0 200 200" className="-rotate-90">
           <circle
             cx="100" cy="100" r={radius}
-            fill="none" stroke="#E5E7EB" strokeWidth="14"
+            fill="none"
+            stroke="rgba(255,255,255,0.07)"
+            strokeWidth="14"
           />
           <circle
             cx="100" cy="100" r={radius}
@@ -66,14 +62,21 @@ export function ScoreGauge({ score, recruiterLikelihood }: ScoreGaugeProps) {
             className="score-ring"
           />
         </svg>
-        <div className="absolute text-center">
+        {/* Glow */}
+        <div
+          className="absolute w-32 h-32 rounded-full blur-2xl opacity-20"
+          style={{ background: color }}
+        />
+        <div className="absolute text-center z-10">
           <div className="text-5xl font-bold" style={{ color }}>{score}</div>
-          <div className="text-sm text-gray-400 font-medium">/ 100</div>
+          <div className="text-xs text-slate-500 font-medium mt-0.5">/ 100</div>
         </div>
       </div>
 
-      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold ${likelihoodBg(recruiterLikelihood)}`}>
-        <span>{likelihoodIcon(recruiterLikelihood)}</span>
+      <div
+        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold ${LIKELIHOOD_STYLES[recruiterLikelihood]}`}
+      >
+        <span>{LIKELIHOOD_ICON[recruiterLikelihood]}</span>
         <span>{recruiterLikelihood} recruiter call likelihood</span>
       </div>
     </div>

@@ -7,7 +7,7 @@ export interface Applicant {
   name: string;
   initials: string;
   score: number;
-  appliedAt: string; // ISO date string
+  appliedAt: string;
   status: ApplicationStatus;
   headline: string;
 }
@@ -17,11 +17,11 @@ export interface Job {
   title: string;
   company: string;
   companyInitials: string;
-  companyColor: string; // Tailwind bg color class
+  companyColor: string;
   location: string;
   type: WorkType;
   salary: string;
-  postedAt: string; // ISO date string
+  postedAt: string;
   description: string;
   requirements: string[];
   niceToHave: string[];
@@ -45,4 +45,17 @@ export interface AnalysisResult {
   missingSkills: string[];
   suggestions: string[];
   formattedResume: string;
+}
+
+/** Extracted user profile stored in localStorage */
+export interface UserProfile {
+  name: string;
+  title: string;
+  yearsExperience: number;
+  skills: string[];
+  /** Domain tags: 'frontend' | 'backend' | 'fullstack' | 'ml' | 'devops' | 'leadership' | ... */
+  domains: string[];
+  education: string;
+  resumeText: string;
+  createdAt: string;
 }
